@@ -1,1 +1,102 @@
+{
+  "name": "Notice Response Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-notice-response",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook-trigger",
+      "name": "Notice Upload Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:11434/api/generate",
+        "options": {
+          "timeout": 60000
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "qwen2.5:1.5b"
+            },
+            {
+              "name": "prompt",
+              "value": "={{`You are a senior legal advisor specializing in GST law in India. Draft a professional legal response to this GST notice:
 
+NOTICE CONTENT:
+${$json.body.noticeContent}
+
+ADDITIONAL CONTEXT:
+${$json.body.additionalContext || 'No additional context provided'}
+
+Create a comprehensive legal response with:
+1. Professional legal format with proper addressing
+2. Preliminary objections (time-barred, natural justice, etc.)
+3. Point-by-point response to each allegation
+4. Relevant CGST Act section references and legal precedents
+5. Supporting legal arguments
+6. Prayer for relief
+
+Format this as a complete legal document ready for submission to GST authorities. Include specific section references from CGST Act 2017, SGST Act, and relevant notifications.`}}"
+            },
+            {
+              "name": "stream",
+              "value": false
+            },
+            {
+              "name": "options",
+              "value": {
+                "temperature": 0.3,
+                "max_tokens": 1500
+              }
+            }
+          ]
+        }
+      },
+      "id": "ollama-legal-request",
+      "name": "Generate Legal Response",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { draftResponse: $json.response, source: 'Legal AI + Qwen2.5', timestamp: new Date().toISOString(), disclaimer: 'AI-generated draft. Please review with qualified legal counsel before submission.' } }}"
+      },
+      "id": "respond-to-webhook",
+      "name": "Return Legal Draft",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [680, 300]
+    }
+  ],
+  "connections": {
+    "Notice Upload Webhook": {
+      "main": [
+        [
+          {
+            "node": "Generate Legal Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Legal Response": {
+      "main": [
+        [
+          {
+            "node": "Return Legal Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
