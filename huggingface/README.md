@@ -1,15 +1,4 @@
 # huggingface/README.md
----
-title: GST Agentic AI
-emoji: 🤖
-colorFrom: blue
-colorTo: purple
-sdk: gradio
-sdk_version: 4.15.0
-app_file: app.py
-pinned: false
-license: mit
----
 
 # GST Agentic AI
 
