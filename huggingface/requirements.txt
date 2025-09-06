@@ -1,1 +1,5 @@
-
+# huggingface/requirements.txt
+gradio==4.15.0
+PyPDF2==3.0.1
+python-docx==1.1.0
+requests==2.31.0
