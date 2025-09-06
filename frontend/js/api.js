@@ -1,6 +1,6 @@
 // API Configuration
 const HUGGINGFACE_SPACE_URL = "https://jraw-gst-agentic-ai.hf.space/";
-const N8N_WEBHOOK_URL = "https://edf8bf81e1b7.ngrok-free.app/webhook/gst-query";
+const N8N_WEBHOOK_URL = "https://63646cf1172d.ngrok-free.app/webhook/gst-query";
 
 // Fallback responses for when APIs are unavailable
 const FALLBACK_RESPONSES = {
