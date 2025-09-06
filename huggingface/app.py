@@ -9,7 +9,7 @@ from datetime import datetime
 import os
 
 # Your Ollama endpoint (you'll need to expose this or use HF models)
-OLLAMA_URL = "https://fe12a0268f8d.ngrok-free.app/api/generate"  # We'll set this up
+OLLAMA_URL = "https://ad8a038eee76.ngrok-free.app/api/generate"  # We'll set this up
 
 # GST Knowledge Base (hardcoded for now, can be expanded)
 GST_KNOWLEDGE = {
