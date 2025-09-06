@@ -1,1 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST Agentic AI - Your Free GST Assistant</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">GST Agentic AI</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>GST Agentic AI</h1>
+            <p>Your intelligent, autonomous GST assistant. Get instant answers to GST queries and professional help with litigation notice responses - completely free.</p>
+            <div class="cta-buttons">
+                <a href="#services" class="btn btn-primary">
+                    <i class="fas fa-robot"></i>
+                    Start Using AI
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    <i class="fas fa-star"></i>
+                    Explore Features
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2 class="section-title">Powerful AI Features</h2>
+        <p class="section-subtitle">Comprehensive GST assistance powered by advanced AI technology</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h3>GST Query Resolution</h3>
+                <p>Get instant, accurate answers to any GST-related questions with complete source references from official GST acts, rules, notifications, and circulars.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <h3>Notice Response Drafting</h3>
+                <p>Upload GST notices in PDF/Word format and get professionally drafted responses with legal references. Export your responses as Word or PDF documents.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Official Source Integration</h3>
+                <p>Every response includes direct references to specific sections, acts, notifications, and circulars from official government sources for complete transparency.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-upload"></i>
+                </div>
+                <h3>Document Processing</h3>
+                <p>Advanced document processing capabilities to analyze uploaded notices and generate contextually appropriate legal responses with proper formatting.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <h3>Export Capabilities</h3>
+                <p>Export your drafted responses in professional Word or PDF format, ready for submission to GST authorities or legal proceedings.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <h3>Completely Free</h3>
+                <p>All features are available at no cost. Our mission is to democratize GST knowledge and make professional assistance accessible to everyone.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <h2 class="section-title">AI Services</h2>
+        <p class="section-subtitle">Choose the service you need - Query Resolution or Notice Response Drafting</p>
+        
+        <div class="service-tabs">
+            <button class="tab-button active" data-tab="query">
+                <i class="fas fa-comments"></i>
+                GST Query Chat
+            </button>
+            <button class="tab-button" data-tab="notice">
+                <i class="fas fa-file-alt"></i>
+                Notice Response Drafting
+            </button>
+        </div>
+
+        <!-- GST Query Tab -->
+        <div id="query-tab" class="tab-content active">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <i class="fas fa-robot"></i> GST Query Assistant - Ask Any GST Question
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai-message">
+                        <p>Hello! I'm your GST Agentic AI assistant specialized in answering GST queries. I can help you with:</p>
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li>GST rates and classifications</li>
+                            <li>Registration requirements and procedures</li>
+                            <li>Return filing and compliance</li>
+                            <li>Input tax credit provisions</li>
+                            <li>Legal interpretations and clarifications</li>
+                        </ul>
+                        <p style="margin-top: 10px;">All answers include references to official GST sources. How can I assist you today?</p>
+                    </div>
+                    
+                    <div class="typing-indicator" id="typingIndicator">
+                        <div class="typing-dots">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Ask me anything about GST...">
+                    <button class="send-btn" id="sendButton">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                <div class="disclaimer-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="disclaimer-content">
+                    <h4>AI-Generated Content Disclaimer</h4>
+                    <p>This content is generated by artificial intelligence based on available GST documentation. While we strive for accuracy and provide official source references, please review all information carefully and consult with qualified tax professionals or legal advisors for specific cases. Users should exercise their professional judgment and verify information independently before making any decisions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notice Response Tab -->
+        <div id="notice-tab" class="tab-content">
+            <div class="notice-container">
+                <div class="chat-header">
+                    <i class="fas fa-file-upload"></i> GST Notice Response Drafting Service
+                </div>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Upload Your GST Notice</h3>
+                    <p>Drag & drop your notice file here or click to browse</p>
+                    <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 0.5rem;">Supported formats: PDF, DOC, DOCX (Max 10MB)</p>
+                    <input type="file" id="fileInput" class="file-input" accept=".pdf,.doc,.docx">
+                </div>
+
+                <div id="uploadedFile" style="display: none;">
+                    <div class="uploaded-file">
+                        <i class="fas fa-file-alt" style="color: var(--success);"></i>
+                        <div>
+                            <strong id="fileName"></strong>
+                            <p style="font-size: 0.9rem; opacity: 0.7;" id="fileSize"></p>
+                        </div>
+                        <button class="btn btn-secondary btn-small" onclick="removeFile()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="processing" id="processingNotice">
+                    <div class="spinner"></div>
+                    <p>Processing your notice and drafting response...</p>
+                </div>
+
+                <div class="draft-area">
+                    <h3 style="margin-bottom: 1rem;">Draft Response</h3>
+                    <textarea id="draftContent" class="draft-content" placeholder="Upload a notice file to generate a professional response draft..."></textarea>
+                    
+                    <div class="draft-actions">
+                        <button class="btn btn-primary btn-small" onclick="generateDraft()">
+                            <i class="fas fa-magic"></i>
+                            Generate Draft
+                        </button>
+                        <button class="btn btn-secondary btn-small" onclick="exportToPDF()">
+                            <i class="fas fa-file-pdf"></i>
+                            Export PDF
+                        </button>
+                        <button class="btn btn-secondary btn-small" onclick="exportToWord()">
+                            <i class="fas fa-file-word"></i>
+                            Export Word
+                        </button>
+                        <button class="btn btn-secondary btn-small" onclick="clearDraft()">
+                            <i class="fas fa-trash"></i>
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                <div class="disclaimer-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="disclaimer-content">
+                    <h4>Legal Document Disclaimer</h4>
+                    <p><strong>IMPORTANT:</strong> This response is AI-generated based on uploaded notice content and available GST legal frameworks. This is not legal advice and should not be relied upon as such. Please have all drafted responses reviewed by qualified legal counsel or chartered accountants before submission to authorities. The AI system provides a starting framework - professional legal review and customization are essential for your specific circumstances.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" style="padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; text-align: center;">
+        <h2 class="section-title">About GST Agentic AI</h2>
+        <div style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; opacity: 0.9;">
+            <p style="margin-bottom: 2rem;">
+                GST Agentic AI is a revolutionary platform that democratizes access to GST knowledge and professional assistance. Our advanced artificial intelligence system is designed to be completely autonomous, providing accurate and reliable GST guidance with complete source transparency.
+            </p>
+            <p style="margin-bottom: 2rem;">
+                Built on cutting-edge AI technology, our platform integrates with official GST documentation, including acts, rules, notifications, circulars, and legal precedents to ensure accuracy and compliance with current regulations. Every response includes specific references to official sources.
+            </p>
+            <p>
+                Our commitment is to provide this powerful tool completely free of charge, making professional-grade GST assistance accessible to businesses, professionals, and individuals across India.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: rgba(0, 0, 0, 0.3); padding: 3rem 2rem 1rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <a href="#home" style="color: var(--white); text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease;">Home</a>
+                <a href="#features" style="color: var(--white); text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease;">Features</a>
+                <a href="#services" style="color: var(--white); text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease;">Services</a>
+                <a href="#about" style="color: var(--white); text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease;">About</a>
+            </div>
+            <p>&copy; 2025 GST Agentic AI. All rights reserved. | Made with ❤️ for the GST community</p>
+        </div>
+    </footer>
+
+    <!-- Load API and main functionality -->
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
