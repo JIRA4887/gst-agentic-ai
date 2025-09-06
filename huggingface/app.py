@@ -30,7 +30,7 @@ GST_KNOWLEDGE = {
     }
 }
 
-def query_local_llm(prompt, model="mistral"):
+def query_local_llm(prompt, model="qwen2.5:1.5b"):
     """Query your local Ollama instance"""
     try:
         payload = {
