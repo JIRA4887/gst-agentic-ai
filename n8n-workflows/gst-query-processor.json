@@ -27,28 +27,11 @@
             },
             {
               "name": "prompt",
-              "value": "={{`You are an expert GST consultant in India with deep knowledge of CGST Act 2017, GST Rules, and all related notifications. 
-
-Query: ${$json.body.query}
-
-Provide a comprehensive answer including:
-1. Direct answer to the question
-2. Relevant CGST Act sections or rule references
-3. Current applicable rates or procedures
-4. Any recent updates or notifications
-
-Keep the response accurate, professional, and cite specific legal provisions where applicable.`}}"
+              "value": "={{`You are an expert GST consultant in India with deep knowledge of CGST Act 2017, GST Rules, and all related notifications. Query: ${$json.body.query} Provide a comprehensive answer including: 1. Direct answer to the question 2. Relevant CGST Act sections or rule references 3. Current applicable rates or procedures 4. Any recent updates or notifications Keep the response accurate, professional, and cite specific legal provisions where applicable.`}}"
             },
             {
               "name": "stream",
               "value": false
-            },
-            {
-              "name": "options",
-              "value": {
-                "temperature": 0.7,
-                "max_tokens": 800
-              }
             }
           ]
         }
@@ -61,7 +44,7 @@ Keep the response accurate, professional, and cite specific legal provisions whe
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={{ { answer: $json.response, source: 'Local Ollama + Qwen2.5', timestamp: new Date().toISOString(), model: 'qwen2.5:1.5b' } }}"
+        "responseBody": "={{ { answer: $json.response, source: 'Local Ollama + Qwen2.5', timestamp: $now, model: 'qwen2.5:1.5b' } }}"
       },
       "id": "respond-to-webhook",
       "name": "Respond to Webhook",
