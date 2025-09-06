@@ -1,1 +1,99 @@
+{
+  "name": "Document Parser",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "parse-document",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook-trigger",
+      "name": "Document Upload Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:11434/api/generate",
+        "options": {
+          "timeout": 45000
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "qwen2.5:1.5b"
+            },
+            {
+              "name": "prompt",
+              "value": "={{`You are an expert document analyzer specializing in GST-related documents. Analyze this document and extract key information:
 
+DOCUMENT CONTENT:
+${$json.body.documentText}
+
+ANALYSIS REQUIRED:
+1. Document Type: Identify if this is a GST notice, return, invoice, or other document
+2. Key Information: Extract important dates, amounts, GSTIN numbers, notice numbers
+3. Issues Identified: List any compliance issues, demands, or penalties mentioned
+4. Action Required: What response or action is needed
+5. Timeline: Any deadlines or time-sensitive items
+6. Legal Provisions: Relevant CGST Act sections or rules referenced
+
+Provide a structured analysis that can be used for further processing or response generation.`}}"
+            },
+            {
+              "name": "stream",
+              "value": false
+            },
+            {
+              "name": "options",
+              "value": {
+                "temperature": 0.2,
+                "max_tokens": 1000
+              }
+            }
+          ]
+        }
+      },
+      "id": "ollama-parse-request",
+      "name": "Parse Document",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { analysis: $json.response, source: 'Document AI + Qwen2.5', timestamp: new Date().toISOString(), processed: true } }}"
+      },
+      "id": "respond-to-webhook",
+      "name": "Return Analysis",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [680, 300]
+    }
+  ],
+  "connections": {
+    "Document Upload Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Document": {
+      "main": [
+        [
+          {
+            "node": "Return Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
