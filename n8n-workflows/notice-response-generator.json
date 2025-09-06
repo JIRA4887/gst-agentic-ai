@@ -27,34 +27,11 @@
             },
             {
               "name": "prompt",
-              "value": "={{`You are a senior legal advisor specializing in GST law in India. Draft a professional legal response to this GST notice:
-
-NOTICE CONTENT:
-${$json.body.noticeContent}
-
-ADDITIONAL CONTEXT:
-${$json.body.additionalContext || 'No additional context provided'}
-
-Create a comprehensive legal response with:
-1. Professional legal format with proper addressing
-2. Preliminary objections (time-barred, natural justice, etc.)
-3. Point-by-point response to each allegation
-4. Relevant CGST Act section references and legal precedents
-5. Supporting legal arguments
-6. Prayer for relief
-
-Format this as a complete legal document ready for submission to GST authorities. Include specific section references from CGST Act 2017, SGST Act, and relevant notifications.`}}"
+              "value": "={{`You are a senior legal advisor specializing in GST law in India. Draft a professional legal response to this GST notice: ${$json.body.noticeContent} Additional Context: ${$json.body.additionalContext} Create a comprehensive legal response with proper format, objections, point-by-point responses, CGST Act references, and prayer for relief.`}}"
             },
             {
               "name": "stream",
               "value": false
-            },
-            {
-              "name": "options",
-              "value": {
-                "temperature": 0.3,
-                "max_tokens": 1500
-              }
             }
           ]
         }
@@ -67,7 +44,7 @@ Format this as a complete legal document ready for submission to GST authorities
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={{ { draftResponse: $json.response, source: 'Legal AI + Qwen2.5', timestamp: new Date().toISOString(), disclaimer: 'AI-generated draft. Please review with qualified legal counsel before submission.' } }}"
+        "responseBody": "={{ { draftResponse: $json.response, source: 'Legal AI + Qwen2.5', timestamp: $now, disclaimer: 'AI-generated draft. Please review with qualified legal counsel before submission.' } }}"
       },
       "id": "respond-to-webhook",
       "name": "Return Legal Draft",
